@@ -85,23 +85,17 @@ Solid::Networking::Status NetworkManagerStatus::convertNmState( uint nmState )
     case NM_STATE_CONNECTING:
         status = Solid::Networking::Connecting;
         break;
-#if NM_CHECK_VERSION(0,8,992)
     case NM_STATE_CONNECTED_LOCAL:
     case NM_STATE_CONNECTED_SITE:
     case NM_STATE_CONNECTED_GLOBAL:
-#else
-    case NM_STATE_CONNECTED:
-#endif
         status = Solid::Networking::Connected;
         break;
     case NM_STATE_DISCONNECTED:
         status = Solid::Networking::Unconnected;
         break;
-#if NM_CHECK_VERSION(0,8,992)
     case NM_STATE_DISCONNECTING:
         status = Solid::Networking::Disconnecting;
         break;
-#endif
     }
 
     return status;

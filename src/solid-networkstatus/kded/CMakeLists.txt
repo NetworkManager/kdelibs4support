@@ -8,7 +8,7 @@ set(kded_networkstatus_PART_SRCS
    wicdcustomtypes.cpp
 )
 
-find_package(NetworkManager 0.7.0)
+find_package(NetworkManager 1.0.0)
 set_package_properties(NetworkManager PROPERTIES DESCRIPTION "The NetworkManager headers"
                        URL "http://projects.gnome.org/NetworkManager"
                        TYPE OPTIONAL
@@ -16,12 +16,10 @@ set_package_properties(NetworkManager PROPERTIES DESCRIPTION "The NetworkManager
                       )
 
 if(NETWORKMANAGER_FOUND)
-    if(NM_0_7)
-        message(STATUS "Adding in-process NetworkManager service-wart to kded module")
-        set(kded_networkstatus_PART_SRCS ${kded_networkstatus_PART_SRCS} networkmanagerstatus.cpp)
-        include_directories(${NETWORKMANAGER_INCLUDE_DIRS})
-        add_definitions(-DNM_BACKEND_ENABLED)
-    endif()
+    message(STATUS "Adding in-process NetworkManager service-wart to kded module")
+    set(kded_networkstatus_PART_SRCS ${kded_networkstatus_PART_SRCS} networkmanagerstatus.cpp)
+    include_directories(${NETWORKMANAGER_INCLUDE_DIRS})
+    add_definitions(-DNM_BACKEND_ENABLED)
 endif()
 
 
